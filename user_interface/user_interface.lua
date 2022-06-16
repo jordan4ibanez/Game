@@ -8,7 +8,8 @@ local function add_element(element_table)
         effect = element_table.effect,
         size = element_table.size,
         color = element_table.color,
-        speed = element_table.speed
+        speed = element_table.speed,
+        render = (element_table.render == nil) or element_table.render
     }
 
     -- don't feel like typing this out over and over
@@ -51,12 +52,14 @@ end
 
 function render_user_interface()
     for id,data in pairs(ui_table) do
-        love.graphics.setColor(data.color[1], data.color[2], data.color[3], 1)
-        if not data.effect then
-            love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
-        else
-            if data.effect == "type" then
-                love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
+        if data.render then
+            love.graphics.setColor(data.color[1], data.color[2], data.color[3], 1)
+            if not data.effect then
+                love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
+            else
+                if data.effect == "type" then
+                    love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
+                end
             end
         end
     end
@@ -71,7 +74,8 @@ add_element({
     initial_timer = 0,
     loop = false,
     size = 1,
-    color = {1.0, 1.0, 0.0}
+    color = {1.0, 1.0, 0.0},
+    render = false,
 })
 
 add_element({
