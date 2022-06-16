@@ -52,10 +52,12 @@ function play_sound(file_name)
 
     -- single sound, no need to do excess math
     if sound_pointer.limit == 1 then
+        sound_pointer[file_name .. "_" .. 1]:stop()
         sound_pointer[file_name .. "_" .. 1]:play()
     -- batched sound, randomize selection
     else
         local selection = math.ceil( math.random() * 5 )
+        sound_pointer[file_name .. "_" .. selection]:stop()
         sound_pointer[file_name .. "_" .. selection]:play()
     end
 end
