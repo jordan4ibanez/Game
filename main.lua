@@ -15,7 +15,7 @@ local function collide_player(axis, modifier)
     end
 
     -- there's something blocking it
-    if map[new_player_position.y][new_player_position.x] ~= 0 then
+    if test_cell[new_player_position.y][new_player_position.x] ~= 0 then
         return false
     end
 
@@ -49,7 +49,7 @@ function love.draw()
 
     for y = 1,50 do
         for x = 1,50 do
-            if map[x][y] == 1 then
+            if test_cell[x][y] == 1 then
                 love.graphics.print("x", y * scaler, x * scaler)
             end
         end
