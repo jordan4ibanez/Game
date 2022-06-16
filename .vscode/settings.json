@@ -9,6 +9,7 @@
         "cell_size",
         "test_cell",
         "ui_table",
-        "render_user_interface"
+        "render_user_interface",
+        "update_user_interface"
     ]
 }

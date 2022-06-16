@@ -40,7 +40,7 @@ dofile("user_interface/user_interface.lua")
 
 
 function love.update(delta)
-    
+    update_user_interface(delta)
 end
 
 function love.draw()
