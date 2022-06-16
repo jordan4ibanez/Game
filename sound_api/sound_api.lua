@@ -19,6 +19,7 @@ local function local_batch_load_ogg(file_name, definition)
     end
 end
 
+-- automates adding sound definitions into loader table
 function batch_load_ogg(definition)
     ogg_load_table[definition.name] = {
         assets = definition.assets,
@@ -26,6 +27,7 @@ function batch_load_ogg(definition)
     }
 end
 
+-- completes the loading in love.load
 function complete_ogg_load()
     for file_name,definition in pairs(ogg_load_table) do
         local_batch_load_ogg(file_name, definition)

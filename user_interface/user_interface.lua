@@ -3,7 +3,7 @@ ui_table = {}
 batch_load_ogg({
     name = "type",
     assets = 5,
-    random_pitch = true
+    random_pitch = false
 })
 
 local function add_element(element_table)
