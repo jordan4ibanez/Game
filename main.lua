@@ -56,7 +56,7 @@ function play_sound(file_name)
     -- batched sound, randomize selection
     else
         local selection = math.ceil( math.random() * 5 )
-        print(selection)
+        sound_pointer[file_name .. "_" .. selection]:play()
     end
 end
 
