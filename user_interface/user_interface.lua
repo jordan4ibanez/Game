@@ -1,5 +1,7 @@
 ui_table = {}
 
+batch_load_ogg("type", 5)
+
 local function add_element(element_table)
     assert(element_table.id, "you forgot to add in an id to your ui element")
     ui_table[element_table.id] = {
@@ -78,7 +80,7 @@ add_element({
     loop = false,
     size = 1,
     color = {1.0, 1.0, 0.0},
-    render = false,
+    render = true,
 })
 
 add_element({

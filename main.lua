@@ -29,9 +29,11 @@ function move_player(axis, modifier)
     end
 end
 
+local ogg_load_table = {}
 static_sound_table = {}
 
-local function batch_load_ogg(file_name, number_of_assets)
+-- helper for helper function
+local function local_batch_load_ogg(file_name, number_of_assets)
 
     -- create new distinct table for sound files
     static_sound_table[file_name] = {}
@@ -42,6 +44,16 @@ local function batch_load_ogg(file_name, number_of_assets)
     -- automate addition into table
     for i = 1,number_of_assets do
         static_sound_table[file_name][file_name .. "_" .. i] = love.audio.newSource("sound/" .. file_name .. "_" .. i .. ".ogg", "static")
+    end
+end
+
+function batch_load_ogg(file_name, number_of_assets)
+    ogg_load_table[file_name] = number_of_assets
+end
+
+local function complete_ogg_load()
+    for file_name,number_of_assets in pairs(ogg_load_table) do
+        local_batch_load_ogg(file_name, number_of_assets)
     end
 end
 
@@ -63,17 +75,14 @@ function play_sound(file_name)
 end
 
 
-function love.load()
-
-    batch_load_ogg("type", 5)
-
-end
-
-
 dofile("controls/controls.lua")
 dofile("map/cell_main.lua")
 dofile("user_interface/user_interface.lua")
 
+
+function love.load()
+    complete_ogg_load()
+end
 
 function love.update(delta)
     update_user_interface(delta)

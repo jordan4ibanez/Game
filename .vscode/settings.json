@@ -12,6 +12,7 @@
         "render_user_interface",
         "update_user_interface",
         "static_sound_table",
-        "play_sound"
+        "play_sound",
+        "batch_load_ogg"
     ]
 }
