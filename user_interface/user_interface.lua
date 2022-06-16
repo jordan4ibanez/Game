@@ -9,6 +9,23 @@ local function add_element(element_table)
         size = element_table.size,
         color = element_table.color
     }
+
+    -- don't feel like typing this out over and over
+    local element_pointer = ui_table[element_table.id]
+
+    -- typing effect
+    if element_table.effect == "type" then
+        element_pointer.current_char = 0
+        element_pointer.timer = 0
+    end
+
+
+
+end
+
+function update_user_interface(delta)
+    print(delta)
+
 end
 
 function render_user_interface()
