@@ -37,15 +37,25 @@ function play_sound(file_name)
 
     local sound_pointer = static_sound_table[file_name]
 
-    print(sound_pointer.random_pitch)
-
     -- single sound, no need to do excess math
     if sound_pointer.limit == 1 then
+
+        -- automate random pitch
+        if sound_pointer.random_pitch then
+            sound_pointer[file_name .. "_" .. 1]:setPitch(1 + ((math.random() / 4 ) - 0.25))
+        end
+
         sound_pointer[file_name .. "_" .. 1]:stop()
         sound_pointer[file_name .. "_" .. 1]:play()
     -- batched sound, randomize selection
     else
         local selection = math.ceil( math.random() * 5 )
+
+        -- automate random pitch
+        if sound_pointer.random_pitch then
+            sound_pointer[file_name .. "_" .. selection]:setPitch(1 + ((math.random() / 4 ) - 0.25))
+        end
+
         sound_pointer[file_name .. "_" .. selection]:stop()
         sound_pointer[file_name .. "_" .. selection]:play()
     end
