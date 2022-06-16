@@ -10,6 +10,8 @@
         "test_cell",
         "ui_table",
         "render_user_interface",
-        "update_user_interface"
+        "update_user_interface",
+        "static_sound_table",
+        "play_sound"
     ]
 }
