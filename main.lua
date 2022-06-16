@@ -36,6 +36,7 @@ end
 
 dofile("controls/controls.lua")
 dofile("map/cell_main.lua")
+dofile("user_interface/user_interface.lua")
 
 
 function love.update(delta)
@@ -58,5 +59,6 @@ function love.draw()
 
     love.graphics.print("O", player_position.x * scaler, player_position.y * scaler)
 
+    render_user_interface()
 
 end
