@@ -11,7 +11,6 @@ local jump_table = {
     escape = bind(love.event.quit),
     f1 = bind(love.event.quit, "restart"),
 
-
     down = bind(move_player, "y", 1),
     up = bind(move_player, "y", -1),
     right = bind(move_player, "x", 1),
