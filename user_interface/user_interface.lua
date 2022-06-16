@@ -30,9 +30,12 @@ function update_user_interface(delta)
     -- print(string.sub(ui_table.debug.text, 1, 3))
 
     for id,data in pairs(ui_table) do
-        if data.effect and data.effect == "type" and not data.finished then
+        if data.render and data.effect and data.effect == "type" and not data.finished then
             data.timer = data.timer + delta
             if data.timer >= data.speed then
+
+                play_sound("type")
+
                 data.timer = 0
                 data.current_char = data.current_char + 1
 
