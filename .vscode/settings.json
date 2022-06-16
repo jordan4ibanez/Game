@@ -5,8 +5,8 @@
     ],
     "Lua.workspace.checkThirdParty": false,
     "Lua.diagnostics.globals": [
-        "map",
         "move_player",
-        "cell_size"
+        "cell_size",
+        "test_cell"
     ]
 }
