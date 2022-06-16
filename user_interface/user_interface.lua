@@ -17,7 +17,7 @@ local function add_element(element_table)
     -- typing effect
     if element_table.effect == "type" then
         element_pointer.current_char = 0
-        element_pointer.timer = 0
+        element_pointer.timer = element_table.initial_timer or 0
         element_pointer.current_string = ""
         element_pointer.loop = element_table.loop or false
         element_pointer.finished = false
@@ -65,10 +65,35 @@ end
 add_element({
     id = "debug",
     text = "this is my debug",
-    position = {x = 100, y = 100},
+    position = {x = 525, y = 20},
     effect = "type",
     speed = 0.1,
+    initial_timer = 0,
     loop = false,
     size = 1,
     color = {1.0, 1.0, 0.0}
+})
+
+add_element({
+    id = "debug2",
+    text = "more debug here",
+    position = {x = 525, y = 40},
+    effect = "type",
+    speed = 0.1,
+    initial_timer = -2,
+    loop = false,
+    size = 1,
+    color = {0.0, 1.0, 0.0}
+})
+
+add_element({
+    id = "debug3",
+    text = "look, more debug",
+    position = {x = 525, y = 60},
+    effect = "type",
+    speed = 0.1,
+    initial_timer = -4,
+    loop = false,
+    size = 1,
+    color = {0.0, 0.0, 1.0}
 })
