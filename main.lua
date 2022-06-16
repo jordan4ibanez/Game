@@ -29,15 +29,14 @@ function move_player(axis, modifier)
     end
 end
 
+function love.load()
+
+end
+
 
 dofile("controls/controls.lua")
 dofile("map/cell_main.lua")
 
-
-
-function love.load()
-
-end
 
 function love.update(delta)
     
