@@ -19,6 +19,8 @@ local function add_element(element_table)
         element_pointer.current_char = 0
         element_pointer.timer = 0
         element_pointer.current_string = ""
+        element_pointer.loop = element_table.loop or false
+        element_pointer.finished = false
     end
 end
 
@@ -27,14 +29,19 @@ function update_user_interface(delta)
     -- print(string.sub(ui_table.debug.text, 1, 3))
 
     for id,data in pairs(ui_table) do
-        if data.effect and data.effect == "type" then
+        if data.effect and data.effect == "type" and not data.finished then
             data.timer = data.timer + delta
             if data.timer >= data.speed then
                 data.timer = 0
                 data.current_char = data.current_char + 1
 
                 if data.current_char > string.len(data.text) then
-                    data.current_char = 0
+                    if data.loop then
+                        data.current_char = 0
+                    else
+                        data.current_char = data.current_char - 1
+                        data.finished = true
+                    end
                 end
                 data.current_string = string.sub(data.text, 0, data.current_char)
             end
@@ -60,7 +67,8 @@ add_element({
     text = "this is my debug",
     position = {x = 100, y = 100},
     effect = "type",
-    speed = 1,
+    speed = 0.1,
+    loop = false,
     size = 1,
     color = {1.0, 1.0, 0.0}
 })
