@@ -3,12 +3,30 @@ math.randomseed(os.time())
 local player_position = { x = 2, y = 3}
 local scaler = 10
 
-function collide_player()
-    
+local function collide_player(axis, modifier)
+    -- apply the position in dry run
+    local new_player_position = {x = player_position.x, y = player_position.y}
+    new_player_position[axis] = new_player_position[axis] + modifier
+
+    -- no going out of the cell
+    if new_player_position.x < 0 or new_player_position.x > cell_size
+        or new_player_position.y < 0 or new_player_position.y > cell_size then
+            return false
+    end
+
+    -- there's something blocking it
+    if map[new_player_position.y][new_player_position.x] ~= 0 then
+        return false
+    end
+
+    -- good to go
+    return true
 end
 
 function move_player(axis, modifier)
-    player_position[axis] = player_position[axis] + modifier
+    if collide_player(axis, modifier) then
+        player_position[axis] = player_position[axis] + modifier
+    end
 end
 
 
