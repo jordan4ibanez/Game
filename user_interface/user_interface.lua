@@ -63,12 +63,11 @@ function render_user_interface()
     for id,data in pairs(ui_table) do
         if data.render then
             love.graphics.setColor(data.color[1], data.color[2], data.color[3], 1)
-            if not data.effect then
-                love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
+            
+            if data.effect == "type" then
+                love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
             else
-                if data.effect == "type" then
-                    love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
-                end
+                love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
             end
         end
     end
@@ -78,7 +77,7 @@ add_element({
     id = "debug",
     text = "this is my debug",
     position = {x = 525, y = 20},
-    effect = "type",
+    effect = "bounce",
     speed = 0.1,
     initial_timer = 0,
     loop = false,
