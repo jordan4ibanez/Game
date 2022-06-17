@@ -30,13 +30,14 @@ local function add_element(element_table)
         element_pointer.finished = false
     -- bounce effect
     elseif element_table.effect == "bounce" then
-        element_pointer.current_char = 1
-        element_pointer.timer = 0
+        element_pointer.current_char = 0
+        element_pointer.timer = 1
         element_pointer.bounce = 0
         element_pointer.before_string = ""
         element_pointer.current_string = ""
         element_pointer.after_string = ""
         element_pointer.up = true
+        element_pointer.loop = element_table.loop or false
     end
 end
 
@@ -122,6 +123,9 @@ function render_user_interface()
             -- type effect
             if data.effect == "type" then
                 love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
+            -- bounce effect
+            elseif data.effect == "bounce" then
+                love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
             -- no effect
             else
                 love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
@@ -137,7 +141,7 @@ add_element({
     effect = "bounce",
     speed = 3,
     initial_timer = 0,
-    loop = false,
+    loop = true,
     size = 1,
     color = {1.0, 1.0, 0.0},
     render = true,
