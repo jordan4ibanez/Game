@@ -99,7 +99,7 @@ function update_user_interface(delta)
                     data.current_string = string.sub(data.text, data.current_char, data.current_char)
                     data.after_string = string.sub(data.text, data.current_char + 1, string.len(data.text))
 
-                    print(data.before_string .. string.gsub(data.current_string, "^%l", string.upper) .. data.after_string)
+                    -- print(data.before_string .. string.gsub(data.current_string, "^%l", string.upper) .. data.after_string)
                 end
 
                 if data.timer <= 0.5 then
