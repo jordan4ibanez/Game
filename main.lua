@@ -1,7 +1,7 @@
 math.randomseed(os.time())
 
 local player_position = { x = 2, y = 3}
-local scaler = 10
+local scaler = 11.5
 
 local function collide_player(axis, modifier)
     -- apply the position in dry run
@@ -38,6 +38,13 @@ dofile("user_interface/user_interface.lua")
 
 
 function love.load()
+
+    love.graphics.setDefaultFilter( "nearest", "nearest", 1 )
+
+    local ibm = love.graphics.newFont("font/NFPixels.ttf", 16)
+    ibm:setFilter("nearest", "nearest", 1)
+    love.graphics.setFont(ibm)
+    
     complete_ogg_load()
 end
 
@@ -52,7 +59,7 @@ function love.draw()
     for y = 1,50 do
         for x = 1,50 do
             if test_cell[x][y] == 1 then
-                love.graphics.print("x", y * scaler, x * scaler)
+                love.graphics.print("X", y * scaler, x * scaler)
             end
         end
     end
