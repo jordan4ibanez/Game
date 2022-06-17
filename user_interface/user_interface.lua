@@ -44,24 +44,30 @@ function update_user_interface(delta)
     -- print(string.sub(ui_table.debug.text, 1, 3))
 
     for id,data in pairs(ui_table) do
-        if data.render and data.effect and data.effect == "type" and not data.finished then
-            data.timer = data.timer + delta
-            if data.timer >= data.speed then
 
-                play_sound("type")
+        -- only rendered and fancy text
+        if data.render and data.effect then
 
-                data.timer = 0
-                data.current_char = data.current_char + 1
+            if data.effect == "type" and not data.finished then
+                data.timer = data.timer + delta
+                if data.timer >= data.speed then
 
-                if data.current_char > string.len(data.text) then
-                    if data.loop then
-                        data.current_char = 0
-                    else
-                        data.current_char = data.current_char - 1
-                        data.finished = true
+                    play_sound("type")
+
+                    -- this randomizes it enough to sound like someone is typing fast
+                    data.timer = 0
+                    data.current_char = data.current_char + 1
+
+                    if data.current_char > string.len(data.text) then
+                        if data.loop then
+                            data.current_char = 0
+                        else
+                            data.current_char = data.current_char - 1
+                            data.finished = true
+                        end
                     end
+                    data.current_string = string.sub(data.text, 0, data.current_char)
                 end
-                data.current_string = string.sub(data.text, 0, data.current_char)
             end
         end
     end
