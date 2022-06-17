@@ -30,8 +30,9 @@ local function add_element(element_table)
         element_pointer.finished = false
     -- bounce effect
     elseif element_table.effect == "bounce" then
-        element_pointer.current_char = 0
+        element_pointer.current_char = 1
         element_pointer.timer = 0
+        element_pointer.bounce = 0
         element_pointer.before_string = ""
         element_pointer.current_string = ""
         element_pointer.after_string = ""
@@ -71,6 +72,36 @@ function update_user_interface(delta)
 
             -- bounce effect
             elseif data.effect == "bounce" and not data.finished then
+                data.timer = data.timer + (delta * data.speed)
+
+                if data.timer >= 1 then
+                    data.timer = 0
+
+                    data.current_char = data.current_char + 1
+
+                    -- skip spaces
+                    if (string.sub(data.text, data.current_char, data.current_char) == " ") then
+                        data.current_char = data.current_char + 1
+                    end
+
+                    if data.current_char > string.len(data.text) then
+                        data.current_char = 1
+                    end
+
+                    data.before_string = string.sub(data.text, 0, data.current_char - 1)
+                    data.current_string = string.sub(data.text, data.current_char, data.current_char)
+                    data.after_string = string.sub(data.text, data.current_char + 1, string.len(data.text))
+
+                    print(data.before_string .. string.gsub(data.current_string, "^%l", string.upper) .. data.after_string)
+                end
+
+                if data.timer <= 0.5 then
+                    data.bounce = data.timer
+                else
+                    data.bounce = 0.5 - (data.timer - 0.5)
+                end
+
+                -- print(data.bounce)
 
             end
         end
@@ -96,9 +127,9 @@ end
 add_element({
     id = "debug",
     text = "this is my debug",
-    position = {x = 525, y = 20},
+    position = {x = 600, y = 20},
     effect = "bounce",
-    speed = 0.1,
+    speed = 3,
     initial_timer = 0,
     loop = false,
     size = 1,
@@ -109,7 +140,7 @@ add_element({
 add_element({
     id = "debug2",
     text = "more debug here",
-    position = {x = 525, y = 40},
+    position = {x = 600, y = 40},
     effect = "type",
     speed = 0.1,
     initial_timer = -2,
@@ -121,7 +152,7 @@ add_element({
 add_element({
     id = "debug3",
     text = "look, more debug",
-    position = {x = 525, y = 60},
+    position = {x = 600, y = 60},
     effect = "type",
     speed = 0.1,
     initial_timer = -4,
