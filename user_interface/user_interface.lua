@@ -55,7 +55,7 @@ function update_user_interface(delta)
                     play_sound("type")
 
                     -- this randomizes it enough to sound like someone is typing fast
-                    data.timer = 0
+                    data.timer = (math.random() / 8) - 0.0625
                     data.current_char = data.current_char + 1
 
                     if data.current_char > string.len(data.text) then
