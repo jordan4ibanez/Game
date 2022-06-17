@@ -26,6 +26,8 @@ end
 function move_player(axis, modifier)
     if collide_player(axis, modifier) then
         player_position[axis] = player_position[axis] + modifier
+
+        play_sound("step")
     end
 end
 
@@ -36,7 +38,11 @@ dofile("controls/controls.lua")
 dofile("map/cell_main.lua")
 dofile("user_interface/user_interface.lua")
 
-
+batch_load_ogg({
+    name = "step",
+    assets = 5,
+    random_pitch = false
+})
 
 
 function love.load()
