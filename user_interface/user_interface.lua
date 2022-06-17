@@ -28,6 +28,14 @@ local function add_element(element_table)
         element_pointer.current_string = ""
         element_pointer.loop = element_table.loop or false
         element_pointer.finished = false
+    -- bounce effect
+    elseif element_table.effect == "bounce" then
+        element_pointer.current_char = 0
+        element_pointer.timer = 0
+        element_pointer.before_string = ""
+        element_pointer.current_string = ""
+        element_pointer.after_string = ""
+        element_pointer.up = true
     end
 end
 
@@ -63,9 +71,10 @@ function render_user_interface()
     for id,data in pairs(ui_table) do
         if data.render then
             love.graphics.setColor(data.color[1], data.color[2], data.color[3], 1)
-            
+
             if data.effect == "type" then
                 love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
+            -- no effect
             else
                 love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
             end
