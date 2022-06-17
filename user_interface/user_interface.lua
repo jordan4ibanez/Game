@@ -41,7 +41,6 @@ end
 
 -- this mainly processes effects on text
 function update_user_interface(delta)
-    -- print(string.sub(ui_table.debug.text, 1, 3))
 
     for id,data in pairs(ui_table) do
 
