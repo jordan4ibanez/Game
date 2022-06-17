@@ -9,8 +9,8 @@ local function collide_player(axis, modifier)
     new_player_position[axis] = new_player_position[axis] + modifier
 
     -- no going out of the cell
-    if new_player_position.x < 0 or new_player_position.x > cell_size
-        or new_player_position.y < 0 or new_player_position.y > cell_size then
+    if new_player_position.x <= 0 or new_player_position.x > cell_size
+        or new_player_position.y <= 0 or new_player_position.y > cell_size then
             return false
     end
 
