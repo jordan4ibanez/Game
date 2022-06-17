@@ -156,7 +156,7 @@ add_element({
     effect = "type",
     speed = 0.1,
     initial_timer = -2,
-    loop = false,
+    loop = true,
     size = 1,
     color = {0.0, 1.0, 0.0}
 })
