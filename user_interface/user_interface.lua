@@ -143,7 +143,7 @@ add_element({
     effect = "bounce",
     speed = 3,
     initial_timer = 0,
-    loop = false,
+    loop = true,
     size = 1,
     color = {1.0, 1.0, 0.0},
     render = true,
@@ -156,7 +156,7 @@ add_element({
     effect = "type",
     speed = 0.1,
     initial_timer = -2,
-    loop = true,
+    loop = false,
     size = 1,
     color = {0.0, 1.0, 0.0}
 })
