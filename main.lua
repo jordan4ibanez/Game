@@ -41,7 +41,7 @@ function love.load()
 
     love.graphics.setDefaultFilter( "nearest", "nearest", 1 )
 
-    local ibm = love.graphics.newFont("font/NFPixels.ttf", 16)
+    ibm = love.graphics.newFont("font/NFPixels.ttf", 16)
     ibm:setFilter("nearest", "nearest", 1)
     love.graphics.setFont(ibm)
     

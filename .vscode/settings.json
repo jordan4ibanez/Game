@@ -14,6 +14,8 @@
         "static_sound_table",
         "play_sound",
         "batch_load_ogg",
-        "complete_ogg_load"
+        "complete_ogg_load",
+        "font_size",
+        "ibm"
     ]
 }

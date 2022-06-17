@@ -125,7 +125,9 @@ function render_user_interface()
                 love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
             -- bounce effect
             elseif data.effect == "bounce" then
-                love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
+                love.graphics.print(data.before_string, data.position.x, data.position.y, 0, data.size, data.size)
+                love.graphics.print(data.current_string, data.position.x + ibm:getWidth(data.before_string), data.position.y - (data.bounce * 20), 0, data.size, data.size)
+                love.graphics.print(data.after_string, data.position.x + ibm:getWidth(data.before_string .. data.current_string), data.position.y, 0, data.size, data.size)
             -- no effect
             else
                 love.graphics.print(data.text, data.position.x, data.position.y, 0, data.size, data.size)
