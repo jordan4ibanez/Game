@@ -90,7 +90,7 @@ function update_user_interface(delta)
                         if data.loop then
                             data.current_char = 1
                         else
-                            data.current_char = 0
+                            data.current_char = 1
                             data.finished = true
                         end
                     end
@@ -143,7 +143,7 @@ add_element({
     effect = "bounce",
     speed = 3,
     initial_timer = 0,
-    loop = true,
+    loop = false,
     size = 1,
     color = {1.0, 1.0, 0.0},
     render = true,
