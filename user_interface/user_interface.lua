@@ -47,6 +47,7 @@ function update_user_interface(delta)
         -- only rendered and fancy text
         if data.render and data.effect then
 
+            -- typing effect
             if data.effect == "type" and not data.finished then
                 data.timer = data.timer + delta
                 if data.timer >= data.speed then
@@ -67,6 +68,10 @@ function update_user_interface(delta)
                     end
                     data.current_string = string.sub(data.text, 0, data.current_char)
                 end
+
+            -- bounce effect
+            elseif data.effect == "bounce" and not data.finished then
+
             end
         end
     end
@@ -77,6 +82,7 @@ function render_user_interface()
         if data.render then
             love.graphics.setColor(data.color[1], data.color[2], data.color[3], 1)
 
+            -- type effect
             if data.effect == "type" then
                 love.graphics.print(data.current_string, data.position.x, data.position.y, 0, data.size, data.size)
             -- no effect
