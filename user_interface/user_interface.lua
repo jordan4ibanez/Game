@@ -84,8 +84,14 @@ function update_user_interface(delta)
                         data.current_char = data.current_char + 1
                     end
 
+                    -- loop effect or it's done
                     if data.current_char > string.len(data.text) then
-                        data.current_char = 1
+                        if data.loop then
+                            data.current_char = 1
+                        else
+                            data.current_char = 0
+                            data.finished = true
+                        end
                     end
 
                     data.before_string = string.sub(data.text, 0, data.current_char - 1)
